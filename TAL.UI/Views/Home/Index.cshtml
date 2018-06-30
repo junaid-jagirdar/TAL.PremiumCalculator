@@ -1,0 +1,62 @@
+﻿@model TAL.UI.Models.CustomerModel
+@{
+    ViewBag.Title = "Home Page";
+
+}
+
+<div class="jumbotron">
+    <h1>TAL</h1>
+    <p class="lead">Welcome to premium calculator website.</p>
+
+</div>
+
+@using (Ajax.BeginForm("CalaculatePremium", "Home", new AjaxOptions() {  HttpMethod = "POST", OnSuccess = "onSuccess" }))
+{
+    @Html.ValidationSummary(true)
+    <div class="row">
+        <h1>Please enter the below details to get the quote.</h1>
+        <div class="col-md-2">
+            <h3>Name</h3>
+        </div>
+        <div class="col-md-2">
+            @Html.TextBoxFor(m => m.Name)
+            @Html.ValidationMessageFor(m => m.DateOfBirth)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">
+            <h3>Date of Birth</h3>
+        </div>
+        <div class="col-md-2">
+            @Html.TextBoxFor(m => m.DateOfBirth)
+            @Html.ValidationMessageFor(m => m.DateOfBirth)
+        </div>
+        <div class="col-md-3">
+            <h2 style="color:brown"> Premium is <label id="premium"></label></h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <h3>Gender</h3>
+        </div>
+        <div class="col-md-1">
+            Male @Html.RadioButtonFor(m => m.gender, TAL.UI.Models.Gender.male)
+        </div>
+        <div class="col-md-1">
+            Female @Html.RadioButtonFor(m => m.gender, TAL.UI.Models.Gender.female)
+            @Html.ValidationMessageFor(m => m.gender)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <button id="submit" class="btn-primary">Calculate Premium</button>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    
+    function onSuccess(data) {
+        $('#premium').text(data);
+    }
+</script>
