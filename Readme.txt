@@ -15,3 +15,5 @@ Things I have done:
 2.Used rules pattern to implement the premium calculation logic so that it is easy to add new rules.
 3.Used fluent assertions in unit testing.
 4.Used structure map for dependency injection.
+
+Testing for commits
